@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="irina.activityreminder.ui.settings.SettingsViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="16dp"
+        tools:context=".ui.settings.SettingsFragment">
+
+        <TextView
+            android:id="@+id/do_not_notify_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:maxLines="2"
+            android:singleLine="false"
+            android:text="Do not notify"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/do_not_notify_from_value"
+            app:layout_constraintEnd_toEndOf="@id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/do_not_notify_from_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={vm.doNotNotifyFrom}"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="32sp"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintEnd_toStartOf="@id/do_not_notify_divider"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/do_not_notify_divider"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="~"
+            android:textAlignment="center"
+            android:textSize="32sp"
+            app:layout_constraintStart_toEndOf="@id/do_not_notify_from_value"
+            app:layout_constraintEnd_toStartOf="@id/do_not_notify_to_value"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/do_not_notify_to_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@={vm.doNotNotifyTo}"
+            android:textAlignment="center"
+            android:textColor="@color/colorAccent"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/do_not_notify_divider"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/reminder_period_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Reminder period"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/reminder_period_value"
+            app:layout_constraintEnd_toStartOf="@id/guideline"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/reminder_period_value" />
+
+        <ImageButton
+            android:id="@+id/decrease_value"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/ic_arrow_left"
+            android:tint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="@id/reminder_period_value"
+            app:layout_constraintEnd_toStartOf="@id/reminder_period_value"
+            app:layout_constraintStart_toEndOf="@id/guideline"
+            app:layout_constraintTop_toTopOf="@id/reminder_period_value" />
+
+        <TextView
+            android:id="@+id/reminder_period_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="@={vm.reminderPeriod}"
+            android:textAlignment="center"
+            android:textSize="32sp"
+            app:layout_constraintEnd_toStartOf="@+id/increase_value"
+            app:layout_constraintStart_toEndOf="@id/decrease_value"
+            app:layout_constraintTop_toBottomOf="@id/do_not_notify_from_value" />
+
+        <ImageButton
+            android:id="@+id/increase_value"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:src="@drawable/ic_arrow_right"
+            android:tint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="@id/reminder_period_value"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/reminder_period_value"
+            app:layout_constraintTop_toTopOf="@id/reminder_period_value" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

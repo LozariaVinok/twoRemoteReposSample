@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="vm"
+            type="irina.activityreminder.ui.main.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="64dp"
+        android:padding="16dp"
+        tools:context=".ui.main.MainFragment">
+
+        <TextView
+            android:id="@+id/last_remind"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{vm.lastRemind}"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/settings_button"
+            app:layout_constraintEnd_toStartOf="@id/settings_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/settings_button" />
+
+        <ImageButton
+            android:id="@+id/settings_button"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:contentDescription="@string/title_activity_settings"
+            android:src="@drawable/ic_settings"
+            android:tint="@color/colorAccent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <irina.activityreminder.ui.widget.PieProgressView
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:indeterminate="false"
+            app:layout_constraintBottom_toTopOf="@id/reset_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/last_remind"
+            app:progress="@{vm.progress}" />
+
+        <ImageButton
+            android:id="@+id/reset_button"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:contentDescription="@string/title_activity_settings"
+            android:onClick="@{() -> vm.resetButtonClicked()}"
+            android:src="@drawable/ic_reset"
+            android:tint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/stop_start_button" />
+
+        <irina.activityreminder.ui.widget.StartStopButton
+            android:id="@+id/stop_start_button"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="128dp"
+            android:layout_height="128dp"
+            android:contentDescription="@string/title_activity_settings"
+            android:onClick="@{() -> vm.startStopButtonClicked()}"
+            android:src="@drawable/ic_stop_to_start_animated"
+            android:tint="@color/colorAccent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/reset_button"
+            app:layout_constraintStart_toStartOf="parent"
+            app:isStarted="@{vm.started}" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
